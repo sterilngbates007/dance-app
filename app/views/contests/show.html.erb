@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Contest:</b>
+  <%= @contest.name %>    <%= @contest.date %>
+</p>
+<hr />
+<h2>Judges</h2>
+<% @contest.judges.each do |judge| %>
+  <p>
+    <b>Judge:</b>
+    <%= judge.name %>
+  </p>
+<% end %>
+<hr />
+<h2>Contestants</h2>
+<% @contest.contestants.each do |contestant| %>
+  <p>
+    <b>Contestant:</b>
+    <%= contestant.name %>
+  </p>
+<% end %>
+
+<hr />
+<h2>Add a judge:</h2>
+<%= form_for([@contest, @contest.judges.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<h2>Add a Contestant:</h2>
+
+<%= form_for([@contest, @contest.contestants.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<hr />
+<%= link_to 'Edit', edit_contest_path(@contest) %> |
+<%= link_to 'Back', contests_path %>
